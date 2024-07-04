@@ -1,1 +1,1 @@
-# stm32h7s3-kit
+# BARAM-45K-H7S

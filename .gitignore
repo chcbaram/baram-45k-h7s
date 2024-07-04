@@ -9,3 +9,4 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+firmware/baram-45k-h7s-fw/build/
