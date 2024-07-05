@@ -16,9 +16,9 @@
 #define      HW_LED_MAX_CH          1
 
 #define _USE_HW_UART
-#define      HW_UART_MAX_CH         1
+#define      HW_UART_MAX_CH         2
 #define      HW_UART_CH_SWD         _DEF_UART1
-// #define      HW_UART_CH_USB         _DEF_UART2
+#define      HW_UART_CH_USB         _DEF_UART2
 #define      HW_UART_CH_CLI         HW_UART_CH_SWD
 
 #define _USE_HW_CLI
@@ -36,13 +36,11 @@
 #define      HW_LOG_BOOT_BUF_MAX    2048
 #define      HW_LOG_LIST_BUF_MAX    4096
 
+#define _USE_HW_I2C
+#define      HW_I2C_MAX_CH          1
 
-// #define _USE_HW_EEPROM
-// #define      HW_EEPROM_MAX_PAGES    32
-// #define      HW_EEPROM_MODE         0
-
-// #define _USE_HW_I2C
-// #define      HW_I2C_MAX_CH          1
+#define _USE_HW_EEPROM
+#define         EEPROM_CHIP_ZD24C128
 
 
 

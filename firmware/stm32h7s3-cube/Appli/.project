@@ -72,6 +72,26 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_gpio.c</locationURI>
 		</link>
 		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_i2c.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_i2c_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c_ex.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_pcd.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pcd.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_pcd_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pcd_ex.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_pwr.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pwr.c</locationURI>
@@ -92,6 +112,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc_ex.c</locationURI>
 		</link>
 		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_smbus.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_smbus_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus_ex.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_tim.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim.c</locationURI>
@@ -110,6 +140,11 @@
 			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_hal_uart_ex.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart_ex.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32H7RSxx_HAL_Driver/stm32h7rsxx_ll_usb.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_ll_usb.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
