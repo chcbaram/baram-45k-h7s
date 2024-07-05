@@ -53,7 +53,7 @@ static DMA_HandleTypeDef handle_GPDMA1_Channel0;
 
 const static uart_hw_t uart_hw_tbl[UART_MAX_CH] = 
   {
-    {"USART1 SWD   ", USART3, &huart3, false},
+    {"USART3 SWD   ", USART3, &huart3, false},
     #if HW_UART_MAX_CH >= 2
     {"USB CD       ", NULL,   NULL   , false},
     #endif

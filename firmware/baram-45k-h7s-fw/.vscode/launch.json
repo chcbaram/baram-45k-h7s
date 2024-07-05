@@ -35,9 +35,6 @@
       "serverArgs": [
         "-m","1"
       ],      
-      // "windows": {
-      //   "serverpath": "C:/ST/STM32CubeCLT_1.16.0/STLink-gdb-server/bin/ST-LINK_gdbserver.exe"
-      // },
       "osx": {
         "serverpath": "/Applications/STMicroelectronics/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.0.400.202209281104/tools/bin/ST-LINK_gdbserver"
       },
