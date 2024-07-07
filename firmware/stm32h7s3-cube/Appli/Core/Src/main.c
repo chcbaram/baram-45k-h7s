@@ -23,6 +23,7 @@
 #include "tim.h"
 #include "usart.h"
 #include "usb_otg.h"
+#include "xspi.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -99,6 +100,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C3_Init();
   MX_USB_OTG_HS_PCD_Init();
+  MX_XSPI1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

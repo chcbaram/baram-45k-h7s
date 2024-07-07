@@ -11,6 +11,9 @@
 
 
 #define _USE_HW_MICROS
+#define _USE_HW_QSPI
+#define _USE_HW_FLASH
+
 
 #define _USE_HW_LED
 #define      HW_LED_MAX_CH          1
@@ -49,6 +52,8 @@
 //
 #define _USE_CLI_HW_EEPROM          1
 #define _USE_CLI_HW_I2C             1
+#define _USE_CLI_HW_QSPI            1
+#define _USE_CLI_HW_FLASH           1
 
 
 #endif

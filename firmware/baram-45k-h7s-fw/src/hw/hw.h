@@ -23,6 +23,7 @@ extern "C" {
 #include "flash.h"
 #include "rtc.h"
 #include "reset.h"
+#include "qspi.h"
 
 
 bool hwInit(void);

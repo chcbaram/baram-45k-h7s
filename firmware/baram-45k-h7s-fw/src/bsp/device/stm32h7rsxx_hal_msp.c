@@ -33,4 +33,6 @@ void HAL_MspInit(void)
     /* Initialization error */
     Error_Handler();
   }
+
+  HAL_PWREx_EnableXSPIM1();
 }

@@ -34,6 +34,8 @@ bool qspiEraseChip(void);
 bool qspiGetStatus(void);
 bool qspiGetInfo(qspi_info_t* p_info);
 bool qspiEnableMemoryMappedMode(void);
+bool qspiGetXipMode(void);
+bool qspiSetXipMode(bool enable);
 
 uint32_t qspiGetAddr(void);
 uint32_t qspiGetLength(void);

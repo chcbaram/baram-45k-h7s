@@ -9,10 +9,10 @@
 
 
 #define FLASH_ADDR(bank)          (0x8000000 + (bank*FLASH_BANK_SIZE))
-#define FLASH_MAX_BANK            2
-#define FLASH_MAX_SECTOR          FLASH_PAGE_NB
+#define FLASH_MAX_BANK            1
+#define FLASH_MAX_SECTOR          FLASH_SECTOR_NB
 #define FLASH_WRITE_SIZE          16
-#define FLASH_SECTOR_SIZE         FLASH_PAGE_SIZE
+// #define FLASH_SECTOR_SIZE         FLASH_PAGE_SIZE
 
 
 
@@ -123,12 +123,10 @@ bool flashErase(uint32_t addr, uint32_t length)
       FLASH_EraseInitTypeDef EraseInit;
       uint32_t SectorError;
       HAL_StatusTypeDef status;
-      uint32_t bank_num[FLASH_MAX_BANK] = {FLASH_BANK_1, FLASH_BANK_2};
 
-      EraseInit.TypeErase = FLASH_TYPEERASE_PAGES;
-      EraseInit.Banks     = bank_num[bank_idx];
-      EraseInit.Page      = start_sector;
-      EraseInit.NbPages   = (end_sector - start_sector) + 1;
+      EraseInit.TypeErase = FLASH_TYPEERASE_SECTORS;
+      EraseInit.Sector    = start_sector;
+      EraseInit.NbSectors = (end_sector - start_sector) + 1;
 
       status = HAL_FLASHEx_Erase(&EraseInit, &SectorError);
       if (status == HAL_OK)

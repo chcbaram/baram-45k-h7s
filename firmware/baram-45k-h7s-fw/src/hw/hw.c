@@ -38,7 +38,8 @@ bool hwInit(void)
 
   i2cInit();
   eepromInit();
-  
+  qspiInit();
+  flashInit();
 
   
   return true;
