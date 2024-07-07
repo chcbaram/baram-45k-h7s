@@ -418,7 +418,7 @@ uint8_t BSP_QSPI_Init(void)
   hqspi.Init.FifoThresholdByte       = 1;
   hqspi.Init.MemoryMode              = HAL_XSPI_SINGLE_MEM;
   hqspi.Init.MemoryType              = HAL_XSPI_MEMTYPE_MICRON;
-  hqspi.Init.MemorySize              = HAL_XSPI_SIZE_2MB;
+  hqspi.Init.MemorySize              = HAL_XSPI_SIZE_16MB;
   hqspi.Init.ChipSelectHighTimeCycle = 5;
   hqspi.Init.FreeRunningClock        = HAL_XSPI_FREERUNCLK_DISABLE;
   hqspi.Init.ClockMode               = HAL_XSPI_CLOCK_MODE_0;
@@ -550,13 +550,13 @@ uint8_t BSP_QSPI_Read(uint8_t* p_data, uint32_t addr, uint32_t length)
   /* Send the command */
   if (HAL_XSPI_Command(&hqspi, &s_command, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
   {
-    return false;
+    return QSPI_ERROR;
   }
 
   /* Reception of the data */
   if (HAL_XSPI_Receive(&hqspi, p_data, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
   {
-    return false;
+    return QSPI_ERROR;
   }
 
   return QSPI_OK;
