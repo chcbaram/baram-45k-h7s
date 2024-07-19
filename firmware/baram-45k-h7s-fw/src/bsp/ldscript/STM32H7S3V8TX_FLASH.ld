@@ -46,14 +46,15 @@ MEMORY
 {
   ITCM      (xrw) : ORIGIN = 0x00000000, LENGTH = 64K
   DTCM       (rw) : ORIGIN = 0x20000000, LENGTH = 64K
-  SRAMAHB   (rw)  : ORIGIN = 0x30000000, LENGTH = 32K
-  BKPSRAM   (rw)  : ORIGIN = 0x38800000, LENGTH = 4K
+  SRAMAHB    (rw) : ORIGIN = 0x30000000, LENGTH = 32K
+  BKPSRAM    (rw) : ORIGIN = 0x38800000, LENGTH = 4K
 
-  RAM       (xrw) : ORIGIN = 0x24000000, LENGTH = 456K
+  BUF       (xrw) : ORIGIN = 0x24000000, LENGTH = 16K
+  RAM       (xrw) : ORIGIN = 0x24004000, LENGTH = 456K-16K
 
   VECTOR     (rx) : ORIGIN = 0x08000000, LENGTH = 1K
   VER        (rx) : ORIGIN = 0x08000400, LENGTH = 1K
-  FLASH     (rx)  : ORIGIN = 0x08000800, LENGTH = 64K - 2K
+  FLASH      (rx) : ORIGIN = 0x08000800, LENGTH = 64K - 2K
 }
 
 /* Sections */
@@ -173,6 +174,14 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >DTCM
+
+  .non_cache(NOLOAD) :
+  {
+    . = ALIGN(4);      
+    *(.non_cache)
+    *(.non_cache*)   
+    . = ALIGN(4);       
+  } >BKPSRAM   
 
   .fw_flash_end :
   {
