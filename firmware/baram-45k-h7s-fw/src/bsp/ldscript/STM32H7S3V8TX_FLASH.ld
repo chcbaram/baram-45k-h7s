@@ -181,7 +181,7 @@ SECTIONS
     *(.non_cache)
     *(.non_cache*)   
     . = ALIGN(4);       
-  } >BKPSRAM   
+  } >BUF   
 
   .fw_flash_end :
   {
