@@ -1421,13 +1421,17 @@ void cliCmd(cli_args_t *args)
     ret = true;
   }
 
-  if (args->argc == 1 && args->isStr(0, "speed-test") == true)
+  if (args->argc == 1 && args->isStr(0, "speed") == true)
   {
     uint32_t buf[512/4];
     uint32_t cnt;
     uint32_t pre_time;
     uint32_t exe_time;
     uint32_t xip_addr;
+
+
+
+    cliPrintf("XIP : %s\n", qspiGetXipMode() ? "ON":"OFF");
 
     xip_addr = qspiGetAddr();
     cnt = 1024*1024 / 512;
@@ -1461,7 +1465,7 @@ void cliCmd(cli_args_t *args)
     cliPrintf("qspi info\n");
     cliPrintf("qspi xip on:off\n");
     cliPrintf("qspi test\n");
-    cliPrintf("qspi speed-test\n");
+    cliPrintf("qspi speed\n");
     cliPrintf("qspi read  [addr] [length]\n");
     cliPrintf("qspi erase [addr] [length]\n");
     cliPrintf("qspi write [addr] [data]\n");
