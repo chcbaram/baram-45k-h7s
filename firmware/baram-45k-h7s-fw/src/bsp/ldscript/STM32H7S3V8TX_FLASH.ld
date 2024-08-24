@@ -52,9 +52,9 @@ MEMORY
   BUF       (xrw) : ORIGIN = 0x24000000, LENGTH = 16K
   RAM       (xrw) : ORIGIN = 0x24004000, LENGTH = 456K-16K
 
-  VECTOR     (rx) : ORIGIN = 0x08000000, LENGTH = 1K
-  VER        (rx) : ORIGIN = 0x08000400, LENGTH = 1K
-  FLASH      (rx) : ORIGIN = 0x08000800, LENGTH = 64K - 2K
+  VECTOR     (rx) : ORIGIN = 0x90000400, LENGTH = 1K
+  VER        (rx) : ORIGIN = 0x90000800, LENGTH = 1K
+  FLASH      (rx) : ORIGIN = 0x90000C00, LENGTH = 512K - 3K
 }
 
 /* Sections */

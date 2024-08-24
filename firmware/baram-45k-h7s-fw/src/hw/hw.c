@@ -34,6 +34,8 @@ bool hwInit(void)
   logPrintf("Booting..Clock\t\t: %d Mhz\r\n", (int)HAL_RCC_GetSysClockFreq()/1000000);
   logPrintf("Booting..Date \t\t: %s\r\n", __DATE__); 
   logPrintf("Booting..Time \t\t: %s\r\n", __TIME__); 
+  logPrintf("Booting..Addr \t\t: 0x%X\r\n", (uint32_t)&_fw_flash_begin); 
+
 
   logPrintf("\n");
   logPrintf("[  ] ICache  %s\n", (SCB->CCR & SCB_CCR_IC_Msk) ? "ON":"OFF");
@@ -41,7 +43,9 @@ bool hwInit(void)
   
   i2cInit();
   eepromInit();
+  #ifdef _USE_HW_QSPI
   qspiInit();
+  #endif
   flashInit();
 
   

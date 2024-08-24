@@ -6,13 +6,13 @@
 #include "bsp.h"
 
 
-#define _DEF_FIRMWATRE_VERSION    "V240719R1"
+#define _DEF_FIRMWATRE_VERSION    "V240824R1"
 #define _DEF_BOARD_NAME           "BARAM-45K-H7S"
 
 
 #define _USE_HW_CACHE
 #define _USE_HW_MICROS
-#define _USE_HW_QSPI
+// #define _USE_HW_QSPI
 #define _USE_HW_FLASH
 
 
