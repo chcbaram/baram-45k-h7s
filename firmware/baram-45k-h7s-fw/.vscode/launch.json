@@ -33,11 +33,19 @@
       "showDevDebugOutput": "none",      
       "servertype": "stlink",
       "serverArgs": [
-        "-m","1"
+        "-m","1",
+        "--extload", "${workspaceFolder}/tools/W25Q16JV_BARAM-45K-H7S.stldr"         
       ],      
-      // "osx": {
-      //   "serverpath": "/Applications/STMicroelectronics/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.0.400.202209281104/tools/bin/ST-LINK_gdbserver"
-      // },
+      "osx": {
+        "serverpath": "/opt/ST/STM32CubeCLT_1.16.0/STLink-gdb-server/bin/ST-LINK_gdbserver",
+        "stm32cubeprogrammer": "/opt/ST/STM32CubeCLT_1.16.0/STM32CubeProgrammer/bin",
+        "svdFile": "/opt/ST/STM32CubeCLT_1.16.0/STMicroelectronics_CMSIS_SVD/STM32H7S.svd"
+      },       
+      "windows": {
+        "serverpath": "C:/ST/STM32CubeCLT_1.16.0/STLink-gdb-server/bin/ST-LINK_gdbserver.exe",
+        "stm32cubeprogrammer": "C:/ST/STM32CubeCLT_1.16.0/STM32CubeProgrammer/bin",
+        "svdFile": "C:/ST/STM32CubeCLT_1.16.0/STMicroelectronics_CMSIS_SVD/STM32H7S.svd"
+      },       
       "runToEntryPoint": "main",  
     },    
     {
@@ -48,9 +56,6 @@
       "type": "cortex-debug",
       "showDevDebugOutput": "none",      
       "servertype": "stlink",
-      // "osx": {
-      //   "serverpath": "/Applications/STMicroelectronics/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.0.400.202209281104/tools/bin/ST-LINK_gdbserver"
-      // },
       "runToEntryPoint": "main",  
       "overrideRestartCommands": [
         "load"

@@ -763,3 +763,4 @@ g_pfnVectors:
    .thumb_set FDCAN2_IT1_IRQHandler,Default_Handler
 
    .weak      SystemInit
+   

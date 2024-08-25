@@ -12,7 +12,7 @@
 
 #define _USE_HW_CACHE
 #define _USE_HW_MICROS
-#define _USE_HW_QSPI
+// #define _USE_HW_QSPI
 #define _USE_HW_FLASH
 
 
