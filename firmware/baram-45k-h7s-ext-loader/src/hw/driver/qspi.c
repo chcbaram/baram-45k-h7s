@@ -83,13 +83,13 @@ bool qspiInit(void)
   {
     if (info.device_id[0] == 0xEF && info.device_id[1] == 0x40 && info.device_id[2] == 0x15)
     {
-      uint32_t qspi_clk;
+      // uint32_t qspi_clk;
 
-      qspi_clk = HAL_RCC_GetHCLKFreq() / (hqspi.Init.ClockPrescaler + 1);
+      // qspi_clk = HAL_RCC_GetHCLKFreq() / (hqspi.Init.ClockPrescaler + 1);
 
-      logPrintf("[OK] qspiInit()\n");
-      logPrintf("     W25Q16JV Found\r\n");
-      logPrintf("     CLK : %d Mhz\r\n", qspi_clk/1000000);
+      // logPrintf("[OK] qspiInit()\n");
+      // logPrintf("     W25Q16JV Found\r\n");
+      // logPrintf("     CLK : %d Mhz\r\n", qspi_clk/1000000);
       
       ret = true;
     }
