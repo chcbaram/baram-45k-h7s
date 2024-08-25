@@ -127,6 +127,10 @@ target_link_options(${EXECUTABLE} PRIVATE
   # -lsupc++
   # -fno-rtti
   # -lnosys
+
+  -nostartfiles
+  -nostdlib
+    
   -Wl,-Map=${PRJ_NAME}.map,--cref
   -Wl,--gc-sections
   -Xlinker -print-memory-usage -Xlinker
