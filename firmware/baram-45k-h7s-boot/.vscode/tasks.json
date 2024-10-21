@@ -1,0 +1,46 @@
+{
+	"version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-configure",
+      "type": "shell",
+      "windows":{
+        "command": "cmake -S . -B build -G 'MinGW Makefiles'" ,
+      },
+      "command": "cmake -S . -B build",
+      "problemMatcher": []
+    },  
+    {
+      "label": "build-build",
+      "type": "shell",
+      "windows":{
+        "command": "cmake -S . -B build -G 'MinGW Makefiles'; cmake --build build -j10",
+      },
+      "command": "cmake -S . -B build; cmake --build build -j10",    
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build-clean",
+      "type": "shell",
+      "command": "cmake --build build --target clean",
+      "problemMatcher": [],
+    }, 
+    {
+      "label": "flash-boot",
+      "type": "shell",
+      "windows":
+      {
+        "command": "stm32_programmer_cli -c port=com3 -w tools/flash-sd/flash-fsbl.tsv",
+      },
+      "osx":
+      {
+        "command": "stm32_programmer_cli -c port=SWD ap=1 -el ${workspaceFolder}/tools/W25Q16JV_BARAM-45K-H7S.stldr -w build/baram-45k-h7s-boot.bin 0x90000000",
+      },
+      "problemMatcher": [],
+    } 
+  ]
+}
