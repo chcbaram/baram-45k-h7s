@@ -34,7 +34,7 @@
       "type": "shell",
       "windows":
       {
-        "command": "stm32_programmer_cli -c port=com3 -w tools/flash-sd/flash-fsbl.tsv",
+        "command": "stm32_programmer_cli -c port=SWD ap=1 -el ${workspaceFolder}/tools/W25Q16JV_BARAM-45K-H7S.stldr -w build/baram-45k-h7s-boot.bin 0x90000000",
       },
       "osx":
       {
