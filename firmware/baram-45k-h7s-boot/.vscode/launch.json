@@ -51,7 +51,7 @@
     {
       "cwd": "${workspaceRoot}",
       "executable": "./build/baram-45k-h7s-boot.elf",
-      "name": "Debug with STLINK With BOOT",
+      "name": "Debug with STLINK at SRAM",
       "request": "launch",
       "type": "cortex-debug",
       "showDevDebugOutput": "none",      
