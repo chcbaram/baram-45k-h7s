@@ -54,7 +54,7 @@ MEMORY
 
   VECTOR     (rx) : ORIGIN = 0x24020000, LENGTH = 1K
   VER        (rx) : ORIGIN = 0x24020400, LENGTH = 1K
-  FLASH      (rx) : ORIGIN = 0x24020800, LENGTH = 128K-18K
+  FLASH      (rx) : ORIGIN = 0x24020800, LENGTH = 128K-2K
 }
 
 /* Sections */
