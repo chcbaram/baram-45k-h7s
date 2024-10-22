@@ -1,6 +1,6 @@
-#include "bsp.h"
 #include "hw_def.h"
-
+#include "bsp.h"
+#include "usb.h"
 
 static void SystemClock_Config(void);
 static void bspMpuInit(void);
@@ -32,6 +32,24 @@ bool bspInit(void)
   bspMpuInit();
 
   return ret;
+}
+
+bool bspDeInit(void)
+{
+  usbDeInit();
+  delay(50);
+
+  // Disable Interrupts
+  //
+  for (int i=0; i<8; i++)
+  {
+    NVIC->ICER[i] = 0xFFFFFFFF;
+    __DSB();
+    __ISB();
+  }
+  SysTick->CTRL = 0;
+    
+  return true;
 }
 
 void delay(uint32_t ms)

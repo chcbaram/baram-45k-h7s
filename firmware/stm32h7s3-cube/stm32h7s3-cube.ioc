@@ -1,6 +1,6 @@
 #MicroXplorer Configuration settings - do not modify
 Appli.IPs=CORTEX_M7_APPLI\:I,GPDMA1\:I,HPDMA1\:I,LINKEDLIST\:I,RCC\:I,GPIO,NVIC2\:I,PWR,DEBUG,TIM5,USART3,USB_OTG_HS,I2C3,XSPI1,RTC,TAMP
-Boot.IPs=CORTEX_M7_BOOT\:I,GPDMA1,HPDMA1,LINKEDLIST,RCC,GPIO,NVIC1\:I,PWR,DEBUG,RTC,TAMP
+Boot.IPs=CORTEX_M7_BOOT\:I,GPDMA1,HPDMA1,LINKEDLIST,RCC,GPIO,NVIC1\:I,PWR,DEBUG,RTC,TAMP,USB_OTG_HS
 CAD.formats=
 CAD.pinconfig=
 CAD.provider=
@@ -32,7 +32,7 @@ CORTEX_M7_APPLI.TypeExtField_S-Cortex_Memory_Protection_Unit_Region3_Settings_S=
 CORTEX_M7_APPLI.default_mode_Activation=1
 CORTEX_M7_BOOT.IPParameters=default_mode_Activation
 CORTEX_M7_BOOT.default_mode_Activation=1
-ExtMemLoader.IPs=EXTMEM_LOADER\:I,EXTMEM_MANAGER\:I,GPIO\:I
+ExtMemLoader.IPs=EXTMEM_LOADER\:I,EXTMEM_MANAGER\:I,GPIO
 File.Version=6
 GPDMA1.CIRCULARMODE_GPDMACH0=ENABLE
 GPDMA1.DESTINC_GPDMACH0=DMA_DINC_INCREMENTED
@@ -99,6 +99,7 @@ NVIC1.ForceEnableDMAVector=true
 NVIC1.HardFault_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 NVIC1.MemoryManagement_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 NVIC1.NonMaskableInt_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
+NVIC1.OTG_HS_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC1.PendSV_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 NVIC1.PriorityGroup=NVIC_PRIORITYGROUP_4
 NVIC1.SVCall_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false

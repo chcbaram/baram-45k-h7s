@@ -1,5 +1,5 @@
 #include "ap.h"
-
+#include "uf2/uf2.h"
 
 
 
@@ -9,6 +9,9 @@ void apInit(void)
 {  
   cliOpen(HW_UART_CH_CLI, 115200);  
   logBoot(false);
+
+  uf2Init();
+  usbInit();
 }
 
 void apMain(void)
@@ -25,5 +28,7 @@ void apMain(void)
     }
 
     cliMain();
+    usbUpdate();
+    uf2Update();    
   }
 }

@@ -16,7 +16,7 @@ project(${PRJ_NAME}
 
 set(EXECUTABLE ${PRJ_NAME}.elf)
 
-
+include(src/hw/driver/usb/CMakeLists.txt)
 
 # 지정한 폴더에 있는 파일만 포함한다.
 #
@@ -25,9 +25,11 @@ file(GLOB SRC_FILES CONFIGURE_DEPENDS
   src/*.c
   src/ap/*.cpp
   src/ap/*.c
+  src/ap/modules/uf2/*.c
+  src/ap/modules/boot/*.c
   src/bsp/*.c
   src/bsp/device/*.c
-
+  
   src/lib/ST/STM32_USB_Device_Library/Core/Src/*.c
   src/lib/ST/EEPROM_Emul/Core/*.c
   src/lib/ST/EEPROM_Emul/Porting/STM32U5/*.c  
@@ -61,6 +63,7 @@ add_executable(${EXECUTABLE}
   ${SRC_FILES}
   ${SRC_FILES_RECURSE}
   ${QMK_SRC_FILES}
+  ${USB_SRC_FILES}  
 )
 
 
@@ -87,6 +90,8 @@ target_include_directories(${EXECUTABLE} PRIVATE
   src/lib/ST/CMSIS/Include
   src/lib/ST/CMSIS/Device/ST/STM32H7RSxx/Include
   src/lib/ST/STM32H7RSxx_HAL_Driver/Inc
+
+  ${USB_INC_DIR}  
 )
 
 target_compile_definitions(${EXECUTABLE} PRIVATE

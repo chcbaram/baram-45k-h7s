@@ -65,7 +65,7 @@
 /* #define HAL_MMC_MODULE_ENABLED   */
 /* #define HAL_NAND_MODULE_ENABLED   */
 /* #define HAL_NOR_MODULE_ENABLED   */
-/* #define HAL_PCD_MODULE_ENABLED   */
+#define HAL_PCD_MODULE_ENABLED
 /* #define HAL_PKA_MODULE_ENABLED   */
 /* #define HAL_PSSI_MODULE_ENABLED   */
 /* #define HAL_RAMECC_MODULE_ENABLED   */

@@ -20,6 +20,7 @@
 #include "main.h"
 #include "gpdma.h"
 #include "rtc.h"
+#include "usb_otg.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -92,6 +93,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPDMA1_Init();
   MX_RTC_Init();
+  MX_USB_OTG_HS_PCD_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
