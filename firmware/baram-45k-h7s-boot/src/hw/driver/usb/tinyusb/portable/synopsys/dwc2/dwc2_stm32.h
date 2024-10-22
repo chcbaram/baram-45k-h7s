@@ -77,13 +77,6 @@ extern "C" {
   #define EP_MAX_HS       9
   #define EP_FIFO_SIZE_HS 4096
 
-  // NOTE: H7 with only 1 USB port: H72x / H73x / H7Ax / H7Bx
-  // USB_OTG_FS_PERIPH_BASE and OTG_FS_IRQn not defined
-  // #if (! defined USB2_OTG_FS)
-  //   #define USB_OTG_FS_PERIPH_BASE  USB_OTG_HS_PERIPH_BASE
-  //   #define OTG_FS_IRQn             OTG_HS_IRQn
-  // #endif
-
 #elif CFG_TUSB_MCU == OPT_MCU_STM32F7
   #include "stm32f7xx.h"
   #define EP_MAX_FS       6
