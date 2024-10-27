@@ -15,8 +15,10 @@ volatile const firm_ver_t firm_ver __attribute__((section(".version"))) =
 
 
 bool hwInit(void)
-{  
+{
+  #ifdef _USE_HW_CLI  
   cliInit();
+  #endif
   logInit();  
   ledInit();
   microsInit();

@@ -22,7 +22,8 @@ extern "C" {
 
 #define MODE_BIT_BOOT         0
 #define MODE_BIT_UPDATE       1
-#define MODE_BIT_MAX          2
+#define MODE_BIT_FIRM         2
+#define MODE_BIT_MAX          3
 
 
 bool resetInit(void);

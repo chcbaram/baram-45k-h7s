@@ -6,8 +6,10 @@
 
 
 void apInit(void)
-{  
+{
+  #ifdef _USE_HW_CLI  
   cliOpen(HW_UART_CH_CLI, 115200);  
+  #endif
   logBoot(false);
 
   uf2Init();
@@ -27,7 +29,9 @@ void apMain(void)
       ledToggle(_DEF_LED1);
     }
 
+    #ifdef _USE_HW_CLI
     cliMain();
+    #endif
     usbUpdate();
     uf2Update();    
   }

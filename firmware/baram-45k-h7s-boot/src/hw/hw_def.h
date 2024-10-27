@@ -25,15 +25,15 @@
 #define      HW_UART_CH_USB         _DEF_UART2
 #define      HW_UART_CH_CLI         HW_UART_CH_SWD
 
-#define _USE_HW_CLI
-#define      HW_CLI_CMD_LIST_MAX    32
-#define      HW_CLI_CMD_NAME_MAX    16
-#define      HW_CLI_LINE_HIS_MAX    8
-#define      HW_CLI_LINE_BUF_MAX    64
+// #define _USE_HW_CLI
+// #define      HW_CLI_CMD_LIST_MAX    32
+// #define      HW_CLI_CMD_NAME_MAX    16
+// #define      HW_CLI_LINE_HIS_MAX    8
+// #define      HW_CLI_LINE_BUF_MAX    64
 
-#define _USE_HW_CLI_GUI
-#define      HW_CLI_GUI_WIDTH       80
-#define      HW_CLI_GUI_HEIGHT      24
+// #define _USE_HW_CLI_GUI
+// #define      HW_CLI_GUI_WIDTH       80
+// #define      HW_CLI_GUI_HEIGHT      24
 
 #define _USE_HW_LOG
 #define      HW_LOG_CH              HW_UART_CH_SWD
@@ -63,13 +63,17 @@
 #define FLASH_ADDR_FIRM             0x90000000
 #define FLASH_ADDR_UPDATE           0x90080000
 
+#define SRAM_ADDR_BOOT              0x24020000
+#define SRAM_ADDR_FIRM              0x24040000
+
+
 //-- CLI
 //
-#define _USE_CLI_HW_EEPROM          1
-#define _USE_CLI_HW_I2C             1
-#define _USE_CLI_HW_QSPI            1
-#define _USE_CLI_HW_FLASH           1
-#define _USE_CLI_HW_RTC             1
-#define _USE_CLI_HW_RESET           1
+// #define _USE_CLI_HW_EEPROM          1
+// #define _USE_CLI_HW_I2C             1
+// #define _USE_CLI_HW_QSPI            1
+// #define _USE_CLI_HW_FLASH           1
+// #define _USE_CLI_HW_RTC             1
+// #define _USE_CLI_HW_RESET           1
 
 #endif

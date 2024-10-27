@@ -31,9 +31,10 @@ bool hwInit(void)
   logPrintf("Booting..Ver  \t\t: %s\r\n", _DEF_FIRMWATRE_VERSION);  
   logPrintf("Booting..Addr \t\t: 0x%X\r\n", (uint32_t)&_fw_flash_begin); 
 
+  rtcInit();
+  resetInit();  
   qspiInit();
-  // qspiSetXipMode(true);
-  // logPrintf("XIP Enable\r\n"); 
+
 
   return true;
 }

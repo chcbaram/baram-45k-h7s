@@ -64,10 +64,10 @@ void uf2_flash_flush(WriteState *state)
   firm_tag.fw_size      = _flash_len;
   firm_tag.fw_crc       = _flash_crc;
   
-  cliPrintf("\n");
-  cliPrintf("fw addr : 0x%X\n", firm_tag.fw_addr);
-  cliPrintf("fw size : %d B\n", firm_tag.fw_size );
-  cliPrintf("fw crc  : 0x%X\n", firm_tag.fw_crc);
+  logPrintf("\n");
+  logPrintf("fw addr : 0x%X\n", firm_tag.fw_addr);
+  logPrintf("fw size : %d B\n", firm_tag.fw_size );
+  logPrintf("fw crc  : 0x%X\n", firm_tag.fw_crc);
 
   if (flashWrite(FLASH_ADDR_UPDATE, (uint8_t *)&firm_tag, sizeof(firm_tag_t)) != true)
   {
