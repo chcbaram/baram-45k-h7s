@@ -53,6 +53,10 @@
 #define _USE_HW_RESET
 #define      HW_RESET_BOOT          1
 
+#define _USE_HW_KEYS
+#define      MATRIX_ROWS            4
+#define      MATRIX_COLS            12
+
 
 //-- CLI
 //
@@ -62,5 +66,7 @@
 #define _USE_CLI_HW_FLASH           1
 #define _USE_CLI_HW_RTC             1
 #define _USE_CLI_HW_RESET           1
+#define _USE_CLI_HW_KEYS            1
+
 
 #endif

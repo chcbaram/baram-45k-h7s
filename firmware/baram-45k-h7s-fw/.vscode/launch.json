@@ -56,6 +56,11 @@
       "type": "cortex-debug",
       "showDevDebugOutput": "none",      
       "servertype": "stlink",
+      "osx": {
+        "serverpath": "/opt/ST/STM32CubeCLT_1.16.0/STLink-gdb-server/bin/ST-LINK_gdbserver",
+        "stm32cubeprogrammer": "/opt/ST/STM32CubeCLT_1.16.0/STM32CubeProgrammer/bin",
+        "svdFile": "/opt/ST/STM32CubeCLT_1.16.0/STMicroelectronics_CMSIS_SVD/STM32H7S.svd"
+      },        
       "serverArgs": [
         "-m","1",
         "--extload", "${workspaceFolder}/tools/W25Q16JV_BARAM-45K-H7S.stldr"         

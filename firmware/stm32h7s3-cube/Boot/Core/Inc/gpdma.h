@@ -32,6 +32,8 @@ extern "C" {
 
 /* USER CODE END Includes */
 
+extern DMA_HandleTypeDef handle_GPDMA1_Channel3;
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
