@@ -45,9 +45,13 @@ static bool is_jump_fw = false;
 
 bool uf2_flash_is_blank(uint32_t addr, uint32_t size)
 {
+  uint32_t data;
+
   for ( uint32_t i = 0; i < size; i += sizeof(uint32_t) )
   {
-    if ( *(uint32_t*) (addr + i) != 0xffffffff )
+    flashRead(addr, (uint8_t *)&data, sizeof(uint32_t));
+
+    if (data != 0xffffffff )
     {
       return false;
     }
@@ -107,7 +111,7 @@ void uf2_flash_complete(WriteState *state)
 
   if (is_jump_fw)
     return;
-    
+
   err_code = bootUpdateFirm();
   logPrintf("[%s] bootUpdateFirm()\n", err_code==OK?"OK":"E_");
   if (err_code == OK)
@@ -145,16 +149,16 @@ void uf2Update(void)
   {
     case 0:
       if (is_jump_fw)
-      {
-        is_jump_fw = false;
+      {      
         pre_time = millis();
         state = 1;
       }
       break;
 
     case 1:
-      if (millis()-pre_time >= 300)
+      if (millis()-pre_time >= 500)
       {
+        is_jump_fw = false;
         bootJumpFirm();  
         state = 0;
       }
@@ -190,6 +194,8 @@ int uf2_write_block(uint32_t block_no, uint8_t *data, WriteState *state)
   else
   {
     // TODO family matches VID/PID
+    logPrintf("familyID Not Match\n");
+    logPrintf("  0x%X:0x%X\n", BOARD_UF2_FAMILY_ID, bl->familyID);
     return -1;
   }
 

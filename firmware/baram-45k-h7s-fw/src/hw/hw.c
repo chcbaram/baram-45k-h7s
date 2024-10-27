@@ -40,6 +40,8 @@ bool hwInit(void)
   logPrintf("[  ] ICache  %s\n", (SCB->CCR & SCB_CCR_IC_Msk) ? "ON":"OFF");
   logPrintf("[  ] DCache  %s\n", (SCB->CCR & SCB_CCR_DC_Msk) ? "ON":"OFF");
   
+  rtcInit();
+  resetInit();    
   i2cInit();
   eepromInit();
   #ifdef _USE_HW_QSPI

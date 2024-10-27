@@ -6,7 +6,7 @@
 #include "bsp.h"
 
 
-#define _DEF_FIRMWATRE_VERSION    "V240719R1"
+#define _DEF_FIRMWATRE_VERSION    "V241027R1"
 #define _DEF_BOARD_NAME           "BARAM-45K-H7S"
 
 
@@ -46,7 +46,12 @@
 #define _USE_HW_EEPROM
 #define         EEPROM_CHIP_ZD24C128
 
+#define _USE_HW_RTC
+#define      HW_RTC_BOOT_MODE       RTC_BKP_DR3
+#define      HW_RTC_RESET_BITS      RTC_BKP_DR4
 
+#define _USE_HW_RESET
+#define      HW_RESET_BOOT          1
 
 
 //-- CLI
@@ -55,6 +60,7 @@
 #define _USE_CLI_HW_I2C             1
 #define _USE_CLI_HW_QSPI            1
 #define _USE_CLI_HW_FLASH           1
-
+#define _USE_CLI_HW_RTC             1
+#define _USE_CLI_HW_RESET           1
 
 #endif

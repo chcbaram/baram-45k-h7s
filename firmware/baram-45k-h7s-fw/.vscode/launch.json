@@ -56,6 +56,10 @@
       "type": "cortex-debug",
       "showDevDebugOutput": "none",      
       "servertype": "stlink",
+      "serverArgs": [
+        "-m","1",
+        "--extload", "${workspaceFolder}/tools/W25Q16JV_BARAM-45K-H7S.stldr"         
+      ],       
       "runToEntryPoint": "main",  
       "overrideRestartCommands": [
         "load"

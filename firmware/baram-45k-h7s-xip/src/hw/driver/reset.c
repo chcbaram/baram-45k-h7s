@@ -66,7 +66,7 @@ bool resetInit(void)
 #endif
 
   rtcGetReg(HW_RTC_BOOT_MODE, &boot_mode);
-  rtcSetReg(HW_RTC_BOOT_MODE, 0);  
+  // rtcSetReg(HW_RTC_BOOT_MODE, 0);  
 
 
   logPrintf("[OK] resetInit()\n");

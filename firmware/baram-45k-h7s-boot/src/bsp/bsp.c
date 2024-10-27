@@ -37,7 +37,7 @@ bool bspInit(void)
 bool bspDeInit(void)
 {
   usbDeInit();
-  delay(50);
+  delay(100);
 
   // Disable Interrupts
   //

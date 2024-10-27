@@ -145,5 +145,15 @@ add_custom_command(TARGET ${EXECUTABLE}
   COMMAND ${CMAKE_OBJCOPY} ARGS -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin
   COMMENT "Invoking: Make Bin -> ${KEYBOARD_PATH}"
   )  
-  
 
+  
+file(READ "src/hw/hw_def.h" version_in)
+string(REPLACE "\"" "" version_out ${version_in})
+string(REGEX MATCH "_DEF_FIRMWATRE_VERSION * ([-A-Za-z0-9]*)" _ ${version_out})
+set(FIRM_VER ${CMAKE_MATCH_1})
+
+add_custom_command(TARGET ${EXECUTABLE} 
+  POST_BUILD
+  COMMAND ${PYTHON_EXECUTABLE} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/tools/uf2/uf2conv.py ARGS ${PROJECT_NAME}.bin --family 0xFFFF0002 --convert --output ${PROJECT_NAME}-${FIRM_VER}.uf2
+  COMMENT "Invoking: Make UF2"
+  )    

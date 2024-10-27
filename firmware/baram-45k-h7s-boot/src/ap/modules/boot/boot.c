@@ -93,8 +93,11 @@ uint16_t bootVerifyFirm(void)
   uint16_t err_code = OK;
   uint32_t rd_len;
   uint8_t  rd_buf[128];
-  firm_tag_t *p_tag = (firm_tag_t *)(FLASH_ADDR_FIRM);
+  firm_tag_t tag;
+  firm_tag_t *p_tag = &tag;
 
+
+  flashRead(FLASH_ADDR_FIRM, (uint8_t *)&tag, sizeof(tag));
 
   do 
   {
@@ -220,6 +223,24 @@ uint16_t bootUpdateFirm(void)
   return err_code;
 }
 
+uint16_t bootCopyFirmToSRAM(void)
+{
+  uint16_t err_code = OK;
+  bool ret;
+  firm_tag_t tag;
+
+
+  flashRead(FLASH_ADDR_FIRM, (uint8_t *)&tag, sizeof(tag));
+
+  ret = flashRead(FLASH_ADDR_FIRM + FLASH_SIZE_TAG, (uint8_t *)SRAM_ADDR_FIRM, tag.fw_size);
+  if (!ret)
+  {
+    err_code = ERR_BOOT_COPY_FIRM;
+  }
+
+  return err_code;
+}
+
 uint16_t bootJumpFirm(void)
 {
   uint16_t err_code = OK;
@@ -227,23 +248,32 @@ uint16_t bootJumpFirm(void)
   err_code = bootVerifyFirm();
   if (err_code == OK)
   {
-    void (**jump_func)(void) = (void (**)(void))(FLASH_ADDR_FIRM + FLASH_SIZE_TAG + 4); 
-
-
-    if (((uint32_t)*jump_func) >= FLASH_ADDR_FIRM && ((uint32_t)*jump_func) < (FLASH_ADDR_FIRM + FLASH_SIZE_FIRM))
+    err_code = bootCopyFirmToSRAM();
+    if (err_code == OK)
     {
-      logPrintf("[  ] bootJumpFirm()\n");
-      logPrintf("     addr : 0x%X\n", (uint32_t)*jump_func);
+      void (**jump_func)(void) = (void (**)(void))(SRAM_ADDR_FIRM + 4); 
 
-      resetSetBootMode(0);
 
-      bspDeInit();
+      if (((uint32_t)*jump_func) >= SRAM_ADDR_FIRM && ((uint32_t)*jump_func) < (SRAM_ADDR_FIRM + FLASH_SIZE_FIRM))
+      {
+        logPrintf("[  ] bootJumpFirm()\n");
+        logPrintf("     addr : 0x%X\n", (uint32_t)*jump_func);
 
-      (*jump_func)();
+        resetSetBootMode(0);
+
+        bspDeInit();
+
+        (*jump_func)();
+      }
+      else
+      {
+        err_code = ERR_BOOT_INVALID_FW;
+        logPrintf("[E_] ERR_BOOT_INVALID_FW\n");
+      }
     }
     else
     {
-      err_code = ERR_BOOT_INVALID_FW;
+      logPrintf("[E_] ERR_BOOT_COPY_FIRM\n");
     }
   }
 

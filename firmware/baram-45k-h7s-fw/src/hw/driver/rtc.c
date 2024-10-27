@@ -179,6 +179,8 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef* rtcHandle)
  
   if(rtcHandle->Instance==RTC)
   {
+    HAL_PWR_EnableBkUpAccess();
+
     /** Initializes the peripherals clock
     */
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC;
@@ -191,7 +193,6 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef* rtcHandle)
     /* RTC clock enable */
     __HAL_RCC_RTC_ENABLE();
     __HAL_RCC_RTCAPB_CLK_ENABLE();
-    __HAL_RCC_RTCAPB_CLKAM_ENABLE();
   }
 }
 
@@ -228,7 +229,6 @@ void HAL_RTC_MspDeInit(RTC_HandleTypeDef* rtcHandle)
   {
     __HAL_RCC_RTC_DISABLE();
     __HAL_RCC_RTCAPB_CLK_DISABLE();
-    __HAL_RCC_RTCAPB_CLKAM_DISABLE();
   }
 }
 

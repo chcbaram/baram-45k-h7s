@@ -50,6 +50,7 @@ bool hwInit(void)
   qspiInit();
   #endif
   flashInit();
+  keysInit();
 
   
   return true;

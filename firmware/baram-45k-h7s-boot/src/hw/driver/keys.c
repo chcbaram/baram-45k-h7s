@@ -5,11 +5,7 @@
 #include "button.h"
 #include "qbuffer.h"
 #include "cli.h"
-#include "scan/pssi.h"
 
-
-
-static uint8_t cols_buf[MATRIX_COLS];
 
 
 #if CLI_USE(HW_KEYS)
@@ -23,7 +19,29 @@ static void cliCmd(cli_args_t *args);
 bool keysInit(void)
 {
 
-  pssiInit();
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  // ROW 0
+  //
+  GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Pin   = GPIO_PIN_0;
+  GPIO_InitStruct.Pull  = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct); 
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+
+  // COL 0
+  //
+  GPIO_InitStruct.Mode  = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Pin   = GPIO_PIN_0;
+  GPIO_InitStruct.Pull  = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  delay(2);
 
 #if CLI_USE(HW_KEYS)
   cliAdd("keys", cliCmd);
@@ -34,32 +52,25 @@ bool keysInit(void)
 
 bool keysIsBusy(void)
 {
-  return pssiIsBusy();
+  return false;
 }
 
 bool keysUpdate(void)
 {
-  bool ret;
-
-  ret = pssiUpdate();
-  pssiReadBuf(cols_buf, MATRIX_COLS);
-  return ret;
+  return true;
 }
 
 bool keysReadBuf(uint8_t *p_data, uint32_t length)
 {
-  pssiReadBuf(p_data, length);
   return true;
 }
 
 bool keysGetPressed(uint16_t row, uint16_t col)
 {
-  bool    ret = false;
-  uint8_t row_bit;
+  bool ret = false;
 
-  row_bit = ~cols_buf[col];
-
-  if (row_bit & (1<<row))
+  
+  if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) == GPIO_PIN_SET)
   {
     ret = true;
   }
@@ -69,26 +80,7 @@ bool keysGetPressed(uint16_t row, uint16_t col)
 
 void keysUpdateEvent(void)
 {
-  logPrintf("key event\n");
 }
-
-void EXTI0_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);    keysUpdateEvent(); }
-void EXTI1_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);    keysUpdateEvent(); }
-void EXTI2_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);    keysUpdateEvent(); }
-void EXTI3_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);    keysUpdateEvent(); }
-void EXTI4_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);    keysUpdateEvent(); }
-void EXTI5_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);    keysUpdateEvent(); }
-void EXTI6_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);    keysUpdateEvent(); }
-void EXTI7_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);    keysUpdateEvent(); }
-void EXTI8_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_8);    keysUpdateEvent(); }
-void EXTI9_IRQHandler(void)   {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9);    keysUpdateEvent(); }
-void EXTI10_IRQHandler(void)  {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);   keysUpdateEvent(); }
-void EXTI11_IRQHandler(void)  {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);   keysUpdateEvent(); }
-void EXTI12_IRQHandler(void)  {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);   keysUpdateEvent(); }
-void EXTI13_IRQHandler(void)  {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);   keysUpdateEvent(); }
-void EXTI14_IRQHandler(void)  {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);   keysUpdateEvent(); }
-void EXTI15_IRQHandler(void)  {  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);   keysUpdateEvent(); }
-
 
 #if CLI_USE(HW_KEYS)
 void cliCmd(cli_args_t *args)
