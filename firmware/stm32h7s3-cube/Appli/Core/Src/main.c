@@ -112,6 +112,7 @@ int main(void)
   MX_RTC_Init();
   MX_TIM15_Init();
   MX_XSPI1_Init();
+  MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

@@ -6,7 +6,7 @@
 #include "bsp.h"
 
 
-#define _DEF_FIRMWATRE_VERSION    "V241027R1"
+#define _DEF_FIRMWATRE_VERSION    "V241028R1"
 #define _DEF_BOARD_NAME           "BARAM-45K-H7S"
 
 
@@ -57,6 +57,9 @@
 #define      MATRIX_ROWS            4
 #define      MATRIX_COLS            12
 
+#define _USE_HW_WS2812
+#define     HW_WS2812_MAX_CH        45
+
 
 //-- CLI
 //
@@ -67,6 +70,7 @@
 #define _USE_CLI_HW_RTC             1
 #define _USE_CLI_HW_RESET           1
 #define _USE_CLI_HW_KEYS            1
+#define _USE_CLI_HW_WS2812          1
 
 
 #endif

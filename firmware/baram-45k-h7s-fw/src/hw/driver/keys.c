@@ -23,7 +23,7 @@ static uint16_t col_rd_buf[MATRIX_ROWS] = {0x00,};
 
 
 
-static TIM_HandleTypeDef htim15;
+static TIM_HandleTypeDef htim16;
 static DMA_NodeTypeDef   Node_GPDMA1_Channel1;
 static DMA_QListTypeDef  List_GPDMA1_Channel1;
 static DMA_HandleTypeDef handle_GPDMA1_Channel1;
@@ -41,8 +41,8 @@ bool keysInit(void)
 
 
 
-  HAL_TIM_Base_Start(&htim15);
-  HAL_TIM_OC_Start(&htim15, TIM_CHANNEL_1);
+  HAL_TIM_Base_Start(&htim16);
+  HAL_TIM_OC_Start(&htim16, TIM_CHANNEL_1);
 
   
 
@@ -109,33 +109,33 @@ bool keysInitTimer(void)
   TIM_OC_InitTypeDef sConfigOC = {0};
 
 
-  /* TIM15 clock enable */
-  __HAL_RCC_TIM15_CLK_ENABLE();
+  /* TIM16 clock enable */
+  __HAL_RCC_TIM16_CLK_ENABLE();
 
-  htim15.Instance               = TIM15;
-  htim15.Init.Prescaler         = 29;
-  htim15.Init.CounterMode       = TIM_COUNTERMODE_UP;
-  htim15.Init.Period            = 9;
-  htim15.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
-  htim15.Init.RepetitionCounter = 0;
-  htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim16.Instance               = TIM16;
+  htim16.Init.Prescaler         = 29;
+  htim16.Init.CounterMode       = TIM_COUNTERMODE_UP;
+  htim16.Init.Period            = 9;
+  htim16.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
+  htim16.Init.RepetitionCounter = 0;
+  htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 
-  if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
+  if (HAL_TIM_Base_Init(&htim16) != HAL_OK)
   {
     return false;
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
+  if (HAL_TIM_ConfigClockSource(&htim16, &sClockSourceConfig) != HAL_OK)
   {
     return false;
   }
-  if (HAL_TIM_OC_Init(&htim15) != HAL_OK)
+  if (HAL_TIM_OC_Init(&htim16) != HAL_OK)
   {
     return false;
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim16, &sMasterConfig) != HAL_OK)
   {
     return false;
   }
@@ -146,15 +146,15 @@ bool keysInitTimer(void)
   sConfigOC.OCFastMode   = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState  = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_OC_ConfigChannel(&htim15, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  if (HAL_TIM_OC_ConfigChannel(&htim16, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
   {
     return false;
   }
-  __HAL_TIM_ENABLE_OCxPRELOAD(&htim15, TIM_CHANNEL_1);
+  __HAL_TIM_ENABLE_OCxPRELOAD(&htim16, TIM_CHANNEL_1);
 
 
-  __HAL_TIM_ENABLE_DMA(&htim15, TIM_DMA_CC1);
-  __HAL_TIM_ENABLE_DMA(&htim15, TIM_DMA_UPDATE);
+  __HAL_TIM_ENABLE_DMA(&htim16, TIM_DMA_CC1);
+  __HAL_TIM_ENABLE_DMA(&htim16, TIM_DMA_UPDATE);
 
   return true;
 }
@@ -169,9 +169,9 @@ bool keysInitDma(void)
 
   // CC1 Event
   //
-  /* GPDMA1_REQUEST_TIM15_CH1 Init */
+  /* GPDMA1_REQUEST_TIM16_CH1 Init */
   NodeConfig.NodeType                         = DMA_GPDMA_LINEAR_NODE;
-  NodeConfig.Init.Request                     = GPDMA1_REQUEST_TIM15_CH1;
+  NodeConfig.Init.Request                     = GPDMA1_REQUEST_TIM16_CH1;
   NodeConfig.Init.BlkHWRequest                = DMA_BREQ_SINGLE_BURST;
   NodeConfig.Init.Direction                   = DMA_MEMORY_TO_PERIPH;
   NodeConfig.Init.SrcInc                      = DMA_SINC_INCREMENTED;
@@ -231,7 +231,7 @@ bool keysInitDma(void)
   // Update Event
   //
   NodeConfig.NodeType                         = DMA_GPDMA_LINEAR_NODE;
-  NodeConfig.Init.Request                     = GPDMA1_REQUEST_TIM15_UP;
+  NodeConfig.Init.Request                     = GPDMA1_REQUEST_TIM16_UP;
   NodeConfig.Init.BlkHWRequest                = DMA_BREQ_SINGLE_BURST;
   NodeConfig.Init.Direction                   = DMA_PERIPH_TO_MEMORY;
   NodeConfig.Init.SrcInc                      = DMA_SINC_FIXED;

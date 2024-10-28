@@ -20,7 +20,6 @@
 #include "main.h"
 #include "gpdma.h"
 #include "rtc.h"
-#include "tim.h"
 #include "usb_otg.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -95,7 +94,6 @@ int main(void)
   MX_GPDMA1_Init();
   MX_RTC_Init();
   MX_USB_OTG_HS_PCD_Init();
-  MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

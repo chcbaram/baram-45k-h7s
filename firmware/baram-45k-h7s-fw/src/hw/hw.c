@@ -49,7 +49,9 @@ bool hwInit(void)
   #endif
   flashInit();
   keysInit();
-
+  #ifdef _USE_HW_WS2812
+  ws2812Init();
+  #endif
   
   return true;
 }
