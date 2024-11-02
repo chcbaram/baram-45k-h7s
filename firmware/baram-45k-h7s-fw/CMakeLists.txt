@@ -17,6 +17,7 @@ project(${PRJ_NAME}
 set(EXECUTABLE ${PRJ_NAME}.elf)
 
 
+include(src/ap/modules/qmk/CMakeLists.txt)
 
 # 지정한 폴더에 있는 파일만 포함한다.
 #
@@ -86,6 +87,8 @@ target_include_directories(${EXECUTABLE} PRIVATE
   src/lib/ST/CMSIS/Device/ST/STM32H7RSxx/Include
   src/lib/ST/STM32H7RSxx_HAL_Driver/Inc
   src/lib/ST/STM32_USB_Device_Library/Core/Inc
+
+  ${QMK_INC_DIR}
 )
 
 target_compile_definitions(${EXECUTABLE} PRIVATE
@@ -146,13 +149,22 @@ add_custom_command(TARGET ${EXECUTABLE}
   )  
 
   
-file(READ "src/hw/hw_def.h" version_in)
-string(REPLACE "\"" "" version_out ${version_in})
-string(REGEX MATCH "_DEF_FIRMWATRE_VERSION * ([-A-Za-z0-9]*)" _ ${version_out})
-set(FIRM_VER ${CMAKE_MATCH_1})
+  file(READ "${QMK_KEYBOARD_PATH}/config.h" config_in)
+  string(REPLACE "\"" "" config_out ${config_in})
+  string(REGEX MATCH "KBD_NAME * ([-A-Za-z0-9.]*)" _ ${config_out})
+  set(KBD_NAME ${CMAKE_MATCH_1})
+  
+  file(READ "src/hw/hw_def.h" version_in)
+  string(REPLACE "\"" "" version_out ${version_in})
+  string(REGEX MATCH "_DEF_FIRMWATRE_VERSION * ([-A-Za-z0-9]*)" _ ${version_out})
+  set(FIRM_VER ${CMAKE_MATCH_1})
+  
+  message("${KBD_NAME}")
+  message("${FIRM_VER}")
+
 
 add_custom_command(TARGET ${EXECUTABLE} 
   POST_BUILD
-  COMMAND ${PYTHON_EXECUTABLE} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/tools/uf2/uf2conv.py ARGS ${PROJECT_NAME}.bin --family 0xFFFF0002 --convert --output ${PROJECT_NAME}-${FIRM_VER}.uf2
+  COMMAND ${PYTHON_EXECUTABLE} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/tools/uf2/uf2conv.py ARGS ${PROJECT_NAME}.bin --family 0xFFFF0002 --convert --output ${KBD_NAME}-${FIRM_VER}.uf2
   COMMENT "Invoking: Make UF2"
   )    

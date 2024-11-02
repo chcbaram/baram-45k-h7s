@@ -16,6 +16,11 @@ volatile const firm_ver_t firm_ver __attribute__((section(".version"))) =
 
 bool hwInit(void)
 {  
+  #ifdef _USE_HW_CACHE
+  SCB_EnableICache();
+  SCB_EnableDCache();
+  #endif  
+
   cliInit();
   logInit();  
   ledInit();
@@ -61,6 +66,6 @@ bool hwInit(void)
   #else
   usbBegin(USB_HID_MODE);
   #endif
-    
+
   return true;
 }

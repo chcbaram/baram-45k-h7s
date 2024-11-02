@@ -5,18 +5,18 @@
       "label": "build-configure",
       "type": "shell",
       "windows":{
-        "command": "cmake -S . -B build -G 'MinGW Makefiles'" ,
+        "command": "cmake -S . -B build -G 'MinGW Makefiles' -DKEYBOARD_PATH='${config:keyboard_path}'" ,
       },
-      "command": "cmake -S . -B build",
+      "command": "cmake -S . -B build -DKEYBOARD_PATH='${config:keyboard_path}'",
       "problemMatcher": []
     },  
     {
       "label": "build-build",
       "type": "shell",
       "windows":{
-        "command": "cmake -S . -B build -G 'MinGW Makefiles'; cmake --build build -j10",
+        "command": "cmake -S . -B build -G 'MinGW Makefiles' -DKEYBOARD_PATH='${config:keyboard_path}'; cmake --build build -j10",
       },
-      "command": "cmake -S . -B build; cmake --build build -j10",    
+      "command": "cmake -S . -B build -DKEYBOARD_PATH='${config:keyboard_path}'; cmake --build build -j10",    
       "problemMatcher": [],
       "group": {
         "kind": "build",
@@ -28,7 +28,7 @@
       "type": "shell",
       "command": "cmake --build build --target clean",
       "problemMatcher": [],
-    }, 
+    },
 
     {
       "label": "uf2-make-uf2",

@@ -2,43 +2,15 @@
 #define HW_DEF_H_
 
 
-
 #include "bsp.h"
+#include QMK_KEYMAP_CONFIG_H
 
 
-//-- config.h
-//
-#define KBD_NAME                    "BARAM-45K-H7S"
-#define USB_VID                     0x0483
-#define USB_PID                     0x5301
-
-#define      MATRIX_ROWS            4
-#define      MATRIX_COLS            12
-
-#define QMK_KEYMAP_CONFIG_H         "def.h"
-
-
-/* HID report IDs */
-enum hid_report_ids {
-    REPORT_ID_KEYBOARD = 1,
-    REPORT_ID_MOUSE,
-    REPORT_ID_SYSTEM,
-    REPORT_ID_CONSUMER,
-    REPORT_ID_PROGRAMMABLE_BUTTON,
-    REPORT_ID_NKRO,
-    REPORT_ID_JOYSTICK,
-    REPORT_ID_DIGITIZER
-};
-
-
-
-//--
-
-#define _DEF_FIRMWATRE_VERSION      "V241028R1"
+#define _DEF_FIRMWATRE_VERSION      "V241102R1"
 #define _DEF_BOARD_NAME             "BARAM-45K-H7S-FW"
 
 
-// #define _USE_HW_CACHE
+#define _USE_HW_CACHE
 #define _USE_HW_MICROS
 // #define _USE_HW_QSPI
 #define _USE_HW_FLASH
@@ -85,8 +57,8 @@ enum hid_report_ids {
 #define _USE_HW_KEYS
 #define      HW_KEYS_PRESS_MAX      8
 
-#define _USE_HW_WS2812
-#define     HW_WS2812_MAX_CH        45
+// #define _USE_HW_WS2812
+// #define     HW_WS2812_MAX_CH        45
 
 #define _USE_HW_USB
 #define _USE_HW_CDC

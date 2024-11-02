@@ -305,6 +305,12 @@ bool keysReadBuf(uint8_t *p_data, uint32_t length)
   return true;
 }
 
+bool keysReadColsBuf(uint16_t *p_data, uint32_t rows_cnt)
+{
+  memcpy(p_data, col_rd_buf, rows_cnt * sizeof(uint16_t));
+  return true;
+}
+
 bool keysGetPressed(uint16_t row, uint16_t col)
 {
   bool     ret = false;

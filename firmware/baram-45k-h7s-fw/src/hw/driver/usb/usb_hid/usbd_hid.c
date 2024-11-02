@@ -47,7 +47,7 @@
 #include "log.h"
 #include "keys.h"
 #include "qbuffer.h"
-// #include "report.h"
+#include "report.h"
 
 
 #if HW_USB_LOG == 1

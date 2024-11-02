@@ -13,11 +13,6 @@ bool bspInit(void)
   bool ret = true;
 
 
-  #ifdef _USE_HW_CACHE
-  SCB_EnableICache();
-  SCB_EnableDCache();
-  #endif  
-
   HAL_Init();
 
 
