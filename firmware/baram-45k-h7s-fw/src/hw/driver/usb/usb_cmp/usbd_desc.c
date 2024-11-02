@@ -287,7 +287,7 @@ static void Get_SerialNum(void)
     IntToUnicode(deviceserial0, &USBD_StringSerial[2], 8);
     IntToUnicode(deviceserial1, &USBD_StringSerial[18], 4);
 
-    const char prefix[] = "U5_";
+    const char prefix[] = "H7_";
     uint32_t prefix_len = 3;
 
     for (int i=0; i<prefix_len; i++)
