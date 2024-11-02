@@ -469,6 +469,8 @@ static uint8_t HIDInEpAdd = HID_EPIN_ADDR;
 extern USBD_HandleTypeDef USBD_Device;
 static TIM_HandleTypeDef htim2;
 
+static uint32_t sof_cnt = 0;
+
 
 /**
   * @brief  USBD_HID_Init
@@ -1230,7 +1232,7 @@ void usbHidInitTimer(void)
   TIM_OC_InitTypeDef sConfigOC = {0};
 
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 159;
+  htim2.Init.Prescaler = 299;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 4294967295;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -1249,7 +1251,7 @@ void usbHidInitTimer(void)
     Error_Handler();
   }
   sSlaveConfig.SlaveMode = TIM_SLAVEMODE_COMBINED_RESETTRIGGER;
-  sSlaveConfig.InputTrigger = TIM_TS_ITR11;
+  sSlaveConfig.InputTrigger = TIM_TS_ITR13;
   if (HAL_TIM_SlaveConfigSynchro(&htim2, &sSlaveConfig) != HAL_OK)
   {
     Error_Handler();
@@ -1312,7 +1314,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
   timer_cnt++;
   timer_end = micros()-rate_time_sof_pre;
 
-
+  sof_cnt++;
   if (qbufferAvailable(&report_q) > 0)
   {
     if (p_hhid->state == USBD_HID_IDLE)
@@ -1394,6 +1396,9 @@ void cliCmd(cli_args_t *args)
         }
         timer_cnt = 0;
         key_send_cnt = 0;
+
+        cliPrintf("sof cnt : %d\n", sof_cnt);
+        sof_cnt=0;
       }
     }
 
