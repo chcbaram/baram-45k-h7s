@@ -1394,10 +1394,10 @@ void cliCmd(cli_args_t *args)
         {
           cliPrintf("%d us\n",key_time_log[i]);
         }
+
+        cliPrintf("sof/tim cnt : %d/%d\n", sof_cnt, timer_cnt);
         timer_cnt = 0;
         key_send_cnt = 0;
-
-        cliPrintf("sof cnt : %d\n", sof_cnt);
         sof_cnt=0;
       }
     }
