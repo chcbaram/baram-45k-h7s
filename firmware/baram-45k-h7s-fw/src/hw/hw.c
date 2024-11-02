@@ -30,6 +30,7 @@ bool hwInit(void)
   logOpen(HW_LOG_CH, 115200);
   logPrintf("\r\n[ Firmware Begin... ]\r\n");
   logPrintf("Booting..Name \t\t: %s\r\n", _DEF_BOARD_NAME);
+  logPrintf("Booting..KBD  \t\t: %s\r\n", KBD_NAME);  
   logPrintf("Booting..Ver  \t\t: %s\r\n", _DEF_FIRMWATRE_VERSION);  
   logPrintf("Booting..Clock\t\t: %d Mhz\r\n", (int)HAL_RCC_GetSysClockFreq()/1000000);
   logPrintf("Booting..Date \t\t: %s\r\n", __DATE__); 
@@ -53,5 +54,13 @@ bool hwInit(void)
   ws2812Init();
   #endif
   
+  cdcInit();
+  usbInit();
+  #if HW_USB_CMP
+  usbBegin(USB_CMP_MODE);
+  #else
+  usbBegin(USB_HID_MODE);
+  #endif
+    
   return true;
 }
